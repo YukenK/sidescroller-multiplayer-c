@@ -91,7 +91,7 @@ void deinit_state(GameState* game_state, ENetHost* server) {
 	}
 	if (peers_left) {
 		for (int i = 0; i < game_state->peers->size; i++) {
-			Peer* peer = (Peer*)vec_get(&game_state->peers, i);
+			Peer* peer = *(Peer**)vec_get(&game_state->peers, i);
 			enet_peer_reset(peer);
 		}
 	}
