@@ -1,3 +1,4 @@
+#pragma once
 #ifndef YUKARRAY
 #define YUKARRAY
 typedef struct {
