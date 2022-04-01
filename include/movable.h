@@ -1,6 +1,6 @@
 #pragma once
-#ifndef YUKMOVABLE
-#define YUKMOVABLE
+#ifndef MOVABLE_H
+#define MOVABLE_H
 #include "vec2.h"
 typedef struct {
 	unsigned int density;

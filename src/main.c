@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "packet.h"
 #include "vector.h"
 
 #define COMPONENT_DEFAULT_SIZE 1024
@@ -100,14 +101,19 @@ void deinit_state(GameState* game_state, ENetHost* server) {
 	deinit_vector(&game_state->peers);
 }
 void handle_packet(GameState* game_state, ENetPeer* peer, ENetPacket* packet) {
+	// Packets are TLV. 2 bytes apiece.
 	uint16_t packet_type;
 	if (packet->dataLength == 0) {
 		fprintf(stderr, "Zero length packet received from peer: %s\n", peer->id);
 	}
-	else if (packet->dataLength == 1) {
-		packet_type = get_u8(packet->data, 0);
-	} else if (packet->dataLength > 1) {
-		uint16_t packet_type = get_u16(packet->data, 0);
+	(packet->dataLength == 1) ? packet_type = get_u8(packet->data, 0) : packet_type = get_u16(packet->data, 0);
+	switch (packet_type) {
+		case P_CHAT_MESSAGE:
+			char* message = *(packet->data + 3);
+			printf("%s\n", message);
+			break;
+		default:
+			break;
 	}
 }
 int main(int argc, char** argv) {

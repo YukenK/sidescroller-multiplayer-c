@@ -1,6 +1,6 @@
 #pragma once
-#ifndef YUKVEC2
-#define YUKVEC2
+#ifndef VEC2_H
+#define VEC2_H
 typedef struct {
 	int x;
 	int y;	

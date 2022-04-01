@@ -1,6 +1,6 @@
 #pragma once
-#ifndef YUKMAP
-#define YUKMAP
+#ifndef MAP_H
+#define MAP_H
 #include "vec.h"
 enum TileType {
 	NONE,

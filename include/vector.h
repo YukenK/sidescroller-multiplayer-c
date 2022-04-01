@@ -1,6 +1,6 @@
 #pragma once
-#ifndef YUKARRAY
-#define YUKARRAY
+#ifndef VEC_H
+#define VEC_H
 typedef struct {
 	unsigned int cursor;
 	void* data;
