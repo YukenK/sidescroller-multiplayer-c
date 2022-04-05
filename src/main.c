@@ -109,7 +109,7 @@ void handle_packet(GameState* game_state, ENetPeer* peer, ENetPacket* packet) {
 	(packet->dataLength == 1) ? packet_type = get_u8(packet->data, 0) : packet_type = get_u16(packet->data, 0);
 	switch (packet_type) {
 		case P_CHAT_MESSAGE:
-			char* message = *(packet->data + 3);
+			char* message = packet->data + 3;
 			printf("%s\n", message);
 			break;
 		default:
@@ -156,6 +156,7 @@ int main(int argc, char** argv) {
 			switch (event.type) {
 				case ENET_EVENT_TYPE_CONNECT:
 					printf("Client joined: %x:%u\n", event.peer->address.host, event.peer->address.port);
+					sync_client(&game_state, event.peer)
 					break;
 				case ENET_EVENT_TYPE_RECEIVE:
 					handle_packet(&game_state, event.peer, event.packet);
